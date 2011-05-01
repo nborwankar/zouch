@@ -1,0 +1,3 @@
+This is zcouch - a huge hack.  It is an implementation or imitation implementation of the ZeroConf (Bonjour) service discovery mechanism but at the application layer.  Weird yes, but you can get a p2p netrok of couches going and they can discover each other without having to futz with the dns infrastructure - if you are running a hosted couch you don't get to do that anyway.
+
+The idea here is to mimic the ZerConf packets and the ZeroConf service discovery using JSON and couchdb lists and views.
