@@ -1,0 +1,21 @@
+<html>
+<body>
+
+<input type="text" id="clock" />
+<input type="text" id="unixtime" >
+<script type="text/javascript">
+var int=self.setInterval("clock()",60000);
+function clock()
+{
+var d=new Date();
+var t=d.toLocaleTimeString();
+//var ut=d.tgetTime()
+document.getElementById("clock").value=t;
+//document.getElementById("unixtime").value=ut;
+}
+</script>
+
+<button onclick="int=window.clearInterval(int)">Stop</button>
+
+</body>
+</html>

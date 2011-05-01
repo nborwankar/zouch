@@ -1,0 +1,109 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>Learning Registry</title>
+
+  <style type="text/css" media="screen">
+
+  </style>
+
+  <script src="/usr_lib/js/jquery.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/usr_lib/js/sammy.js" type="text/javascript" charset="utf-8"></script>
+  <script type="text/javascript" charset="utf-8">
+    ;(function($) {
+              
+              
+        var presenceURL = "http://localhost:5984/wt0/_design/presence/_view/hostspresent";      
+        var timer = setInterval(function()
+           {
+              if( parseInt($('#ctimer input').val()) )
+              {
+                 var cTicks = parseInt($('#ctimer input').val());
+                  
+                 $('#ctimer input').val(--cTicks);
+              }
+              else
+              {
+                 clearInterval(timer);
+              }
+
+           }, 60000);    
+        
+      var app = $.sammy(function() {
+                         
+        this.get('#/hello', function() {
+          $('#hello').text('Hello World');
+        });
+
+        this.get('#/goodbye', function() {
+          $('#hello').text('');
+        });
+
+        this.get('#/setts', function(){
+            $('#ctimer input').val('3000');            
+        });
+
+        this.get('#/getts', function(){
+            alert($('#ctimer input').val());            
+        });
+
+        this.get('#/startts', function(){
+            var sTicks =  $('#ctimer input').val();         
+            var cTicks = parseInt(sTicks);
+            alert(cTicks);  
+            alert('timer =' + timer);  
+
+        });
+
+        this.get('#/stopts', function(){
+            $('#ctimer input').val(3);            
+            alert('Stopping sending presence after' + $('#ctimer input').val());            
+        });
+        
+        this.get('#/showpresent', function(){
+            
+            // invoke view
+            
+            
+            
+            
+            // get JSON
+            // check value of JSON
+            // display JSON that satisfies value
+        
+        });
+
+        
+      });
+
+      $(function() {
+        app.run()
+      });
+    })(jQuery);
+  </script>
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="main"></div>
+   
+    <ul id="link">
+      <li><a href="#/hello">Hello!</a></li>	  
+      <li><a href="#/goodbye">Goodbye!</a></li>
+      <li><a href="#/setts">Set TS</a></li>	  
+      <li><a href="#/getts">Get TS</a></li>	  
+      <li><a href="#/startts">Start Sending Presence</a></li>	  
+      <li><a href="#/stopts">Stop Sending Presence</a></li>	  
+      <li><a href="#/showpresent">Show hosts on the network</a></li>	  
+    </ul>
+    <div id="ctimer"><input type="text" id="e" value="5000" /></div>
+    <div id="presence"></div>
+    <div id="hello"> </div>
+    <div id="hostspresent"> </div>
+
+  </div>
+
+</body>
+</html>
